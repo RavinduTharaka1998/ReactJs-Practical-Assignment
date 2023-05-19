@@ -2,7 +2,7 @@ import  React, {Component} from 'react';
 import axios from 'axios';
 
 import EmployeeTableRow from './employeeTableRow';
-import './css/style.css'
+import '../css/style.css';
 
 export default  class viewEmployee extends  Component{
 
@@ -43,7 +43,8 @@ export default  class viewEmployee extends  Component{
                     </div>
                     
                     <br/>
-                    <a href = "/" className='btn btn-dark'>+ Add New One</a>
+                    <a href = "/" className='btn btn-primary'>Home</a> &nbsp;
+                    <a href = "/addEmployee" className='btn btn-dark'>+ Add New One</a>
                     <table className="table table-striped" style = {{marginTop :20}}>
                             <thead>
                                 <tr>

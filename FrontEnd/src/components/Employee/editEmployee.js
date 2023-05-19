@@ -2,7 +2,7 @@ import  React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-import './css/style.css'
+import '../css/style.css';
 
 export default  class editEmployee extends  Component{
 
@@ -34,8 +34,8 @@ export default  class editEmployee extends  Component{
     }
 
     componentDidMount() {
-        //let x = parseInt(this.props.match.params.id)
-        axios.get('https://localhost:7149/api/Employee/'+this.props.match.params.id)
+        let x = parseInt(this.props.match.params.id)
+        axios.get('https://localhost:7149/api/Employee/'+x)
             .then(res => {
                 this.setState({
                     firstName: res.data.firstName,
@@ -100,7 +100,7 @@ export default  class editEmployee extends  Component{
     onSubmit(e){
         e.preventDefault();
 
-        //let y = parseInt(this.props.match.params.id)
+        let y = parseInt(this.props.match.params.id);
         const obj = {
             firstName : this.state.firstName,
             lastName : this.state.lastName,
@@ -111,7 +111,7 @@ export default  class editEmployee extends  Component{
             department : this.state.department
         };
 
-        axios.put('https://localhost:7149/api/Employee/'+this.props.match.params.id,obj)
+        axios.put('https://localhost:7149/api/Employee/'+y,obj)
         .then(res => {
             alert("Employee Updated Successfully");
             this.setState({
@@ -142,6 +142,7 @@ export default  class editEmployee extends  Component{
                         <hr/>
                         <h3 className="text-center">Edit Employee</h3>
                         <hr/>
+                        <a href = "/" className='btn btn-dark'>Home</a> &nbsp;
                         <a href = "/viewEmployee" className='btn btn-warning'>View Employee</a>
                         <img src = "https://static.vecteezy.com/system/resources/previews/008/627/770/non_2x/company-employees-planning-task-and-brainstorming-flat-illustration-cartoon-people-sharing-ideas-and-meeting-flat-design-modern-illustration-vector.jpg" width={300} />
                         <hr/>

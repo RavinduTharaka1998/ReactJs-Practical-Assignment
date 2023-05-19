@@ -2,7 +2,7 @@ import  React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-import './css/style.css'
+import '../css/style.css';
 
 export default  class addEmployee extends  Component{
 
@@ -129,7 +129,9 @@ export default  class addEmployee extends  Component{
                         <hr/>
                         <h3 className="text-center">Add New Employee</h3>
                         <hr/>
+                        <a href = "/" className='btn btn-dark'>Home</a> &nbsp;
                         <a href = "/viewEmployee" className='btn btn-success'>View Employee</a>
+                        
                         <img src = "https://img.freepik.com/free-vector/done-concept-illustration_114360-3060.jpg?w=2000" width={300} />
                         <hr/>
                     </div>

@@ -1,5 +1,6 @@
 import  React, {Component} from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 import './css/style.css'
 
@@ -30,6 +31,9 @@ export default  class addEmployee extends  Component{
         }
 
     }
+
+    
+
     onChangetFirstName(e){
         this.setState( {
             firstName: e.target.value
@@ -49,12 +53,16 @@ export default  class addEmployee extends  Component{
         this.setState( {
             dob: e.target.value
         });
+    this.onChangetAge(e)   
     }
+
     onChangetAge(e){
-        this.setState( {
-            age: e.target.value
-        });
+        const today = moment();
+        const birthdateMoment = moment(this.state.dob, 'YYYY-MM-DD');
+        this.state.age = today.diff(birthdateMoment, 'years');
+        //alert("Your age is:" +this.state.age);
     }
+
     onChangeSalary(e){
         this.setState( {
             salary: e.target.value
@@ -118,35 +126,35 @@ export default  class addEmployee extends  Component{
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control"  value={this.state.firstName} onChange = {this.onChangetFirstName}/>
+                                    <input type="text" required class="form-control"  value={this.state.firstName} onChange = {this.onChangetFirstName}/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" value={this.state.lastName} onChange = {this.onChangetLastName}/>
+                                    <input type="text" required class="form-control" value={this.state.lastName} onChange = {this.onChangetLastName}/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>email Address</label>
-                                <input type="email" class="form-control" value={this.state.email} onChange = {this.onChangeEmail}/>
+                                <input type="email" required class="form-control" value={this.state.email} onChange = {this.onChangeEmail}/>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>Date of Birth</label>
-                                    <input type="date" class="form-control"  value={this.state.dob} onChange = {this.onChangetDoB}/>
+                                    <input type="date" required class="form-control"  value={this.state.dob} onChange = {this.onChangetDoB}/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Age</label>
-                                    <input type="number"  class="form-control" value={this.state.age} onChange = {this.onChangetAge}/>
+                                    <input type="number" readOnly class="form-control" value={this.state.age} onChange = {this.onChangetAge}/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Salary (LKR)</label>
-                                <input type="number" class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/>
+                                <input type="number" required class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/>
                             </div>
                             <div class="form-group">
                                 <label>Department</label>
                                 {/* <input type="number" class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/> */}
-                                <select class="form-control" value={this.state.department} onChange = {this.onChangeDepartment}>
+                                <select class="form-control" value={this.state.department} onChange = {this.onChangeDepartment} required>
                                     <option>select department....</option>
                                     <option value = "IT">IT</option>
                                 </select>

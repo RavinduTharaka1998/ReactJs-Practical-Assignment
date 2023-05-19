@@ -9,7 +9,7 @@ export default class TableRow extends Component {
         this.deletesss = this.deletesss.bind(this);
     }
     deletesss(){
-        alert("Delete id is = "+this.props.obj.id);
+        //alert("Delete id is = "+this.props.obj.id);
         let x = parseInt(this.props.obj.id)
         axios.delete('https://localhost:7149/api/Employee/'+x)
             .then(this.setState({redirect: true}))

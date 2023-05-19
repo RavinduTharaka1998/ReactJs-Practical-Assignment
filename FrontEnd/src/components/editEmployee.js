@@ -1,5 +1,6 @@
 import  React, {Component} from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 import './css/style.css'
 
@@ -32,8 +33,8 @@ export default  class editEmployee extends  Component{
     }
 
     componentDidMount() {
-        let x = parseInt(this.props.match.params.id)
-        axios.get('https://localhost:7149/api/Employee/'+x)
+        //let x = parseInt(this.props.match.params.id)
+        axios.get('https://localhost:7149/api/Employee/'+this.props.match.params.id)
             .then(res => {
                 this.setState({
                     firstName: res.data.firstName,
@@ -68,11 +69,12 @@ export default  class editEmployee extends  Component{
         this.setState( {
             dob: e.target.value
         });
+    this.onChangetAge(e)   
     }
     onChangetAge(e){
-        this.setState( {
-            age: e.target.value
-        });
+        const today = moment();
+        const birthdateMoment = moment(this.state.dob, 'YYYY-MM-DD');
+        this.state.age = today.diff(birthdateMoment, 'years');
     }
     onChangeSalary(e){
         this.setState( {
@@ -87,7 +89,8 @@ export default  class editEmployee extends  Component{
 
     onSubmit(e){
         e.preventDefault();
-        let y = parseInt(this.props.match.params.id)
+
+        //let y = parseInt(this.props.match.params.id)
         const obj = {
             firstName : this.state.firstName,
             lastName : this.state.lastName,
@@ -98,7 +101,7 @@ export default  class editEmployee extends  Component{
             department : this.state.department
         };
 
-        axios.put('https://localhost:7149/api/Employee/'+y,obj)
+        axios.put('https://localhost:7149/api/Employee/'+this.props.match.params.id,obj)
         .then(res => {
             alert("Employee Updated Successfully");
             this.setState({
@@ -156,7 +159,7 @@ export default  class editEmployee extends  Component{
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Age</label>
-                                    <input type="number"  class="form-control" value={this.state.age} onChange = {this.onChangetAge}/>
+                                    <input type="number" readOnly class="form-control" value={this.state.age} onChange = {this.onChangetAge}/>
                                 </div>
                             </div>
                             <div class="form-group">

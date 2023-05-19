@@ -37,7 +37,11 @@ export default  class viewEmployee extends  Component{
         return(
             <div className='container'>
                     <br/>
-                    <h2>Current Employees Details</h2>
+                    <div className='view-top'>
+                        <img src = "https://probill.com/wp-content/uploads/corporate-portrait-office-workers-employees_74855-5471.jpeg" width = "200"/>
+                        <h2>Current Employees Details</h2>
+                    </div>
+                    
                     <br/>
                     <a href = "/" className='btn btn-dark'>+ Add New One</a>
                     <table className="table table-striped" style = {{marginTop :20}}>

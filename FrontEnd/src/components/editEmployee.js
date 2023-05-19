@@ -130,7 +130,7 @@ export default  class editEmployee extends  Component{
                         <h3 className="text-center">Add New Employee</h3>
                         <hr/>
                         <a href = "/viewEmployee" className='btn btn-success'>View Employee</a>
-                        <img src = "https://img.freepik.com/free-vector/done-concept-illustration_114360-3060.jpg?w=2000" width={300} />
+                        <img src = "https://static.vecteezy.com/system/resources/previews/008/627/770/non_2x/company-employees-planning-task-and-brainstorming-flat-illustration-cartoon-people-sharing-ideas-and-meeting-flat-design-modern-illustration-vector.jpg" width={300} />
                         <hr/>
                     </div>
                     <div className='col-lg-8'>

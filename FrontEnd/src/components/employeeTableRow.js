@@ -38,7 +38,7 @@ export default class TableRow extends Component {
                    {this.props.obj.age}
                </td>
                <td>
-                   {this.props.obj.salary}
+                   {this.props.obj.salary} <p>LKR</p>
                </td>
                <td>
                    {this.props.obj.department}

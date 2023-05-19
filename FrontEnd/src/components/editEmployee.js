@@ -27,7 +27,8 @@ export default  class editEmployee extends  Component{
             dob:'',
             age: '',
             salary:'',
-            department:''
+            department:'',
+            dep : []
         }
 
     }
@@ -45,6 +46,15 @@ export default  class editEmployee extends  Component{
                     salary: res.data.salary,
                     department: res.data.department
                 });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+
+        axios.get('https://localhost:7149/api/Department')
+            .then(response => {
+                 this.setState({dep : response.data});
+                console.log(response.data);
             })
             .catch(function (error){
                 console.log(error);
@@ -130,9 +140,9 @@ export default  class editEmployee extends  Component{
                     <div className='col-lg-4'>
                         <h2 className= 'tittle'>Employee Management</h2>
                         <hr/>
-                        <h3 className="text-center">Add New Employee</h3>
+                        <h3 className="text-center">Edit Employee</h3>
                         <hr/>
-                        <a href = "/viewEmployee" className='btn btn-success'>View Employee</a>
+                        <a href = "/viewEmployee" className='btn btn-warning'>View Employee</a>
                         <img src = "https://static.vecteezy.com/system/resources/previews/008/627/770/non_2x/company-employees-planning-task-and-brainstorming-flat-illustration-cartoon-people-sharing-ideas-and-meeting-flat-design-modern-illustration-vector.jpg" width={300} />
                         <hr/>
                     </div>
@@ -168,10 +178,11 @@ export default  class editEmployee extends  Component{
                             </div>
                             <div class="form-group">
                                 <label>Department</label>
-                                {/* <input type="number" class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/> */}
-                                <select class="form-control" value={this.state.department} onChange = {this.onChangeDepartment}>
+                                <select className="form-control" value={this.state.department} onChange = {this.onChangeDepartment} required>
                                     <option>select department....</option>
-                                    <option value = "IT">IT</option>
+                                    {this.state.dep.map(obj => 
+                                        <option value={obj.departmentName} >{obj.departmentName}</option>
+                                    )}
                                 </select>
                             </div>
 

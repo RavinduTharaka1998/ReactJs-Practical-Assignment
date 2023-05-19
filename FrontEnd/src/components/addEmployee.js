@@ -27,11 +27,23 @@ export default  class addEmployee extends  Component{
             dob:'',
             age: '',
             salary:'',
-            department:''
+            department:'',
+            dep : []
         }
 
     }
 
+    componentDidMount() {
+        //alert("Calling")
+        axios.get('https://localhost:7149/api/Department')
+            .then(response => {
+                this.setState({dep : response.data});
+                console.log(response.data);
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
     
 
     onChangetFirstName(e){
@@ -153,10 +165,12 @@ export default  class addEmployee extends  Component{
                             </div>
                             <div class="form-group">
                                 <label>Department</label>
-                                {/* <input type="number" class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/> */}
-                                <select class="form-control" value={this.state.department} onChange = {this.onChangeDepartment} required>
+
+                                <select className="form-control" value={this.state.department} onChange = {this.onChangeDepartment} required>
                                     <option>select department....</option>
-                                    <option value = "IT">IT</option>
+                                    {this.state.dep.map(obj => 
+                                        <option value={obj.departmentName} >{obj.departmentName}</option>
+                                    )}
                                 </select>
                             </div>
 

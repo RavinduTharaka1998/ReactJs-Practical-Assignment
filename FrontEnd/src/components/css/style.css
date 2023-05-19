@@ -1,0 +1,17 @@
+.row {
+    margin-top: 150px;
+}
+
+.row .col-lg-4 {
+    text-align: center;
+}
+
+.row .col-lg-4 h2 {
+    font-weight: bold;
+    color: rgb(15, 156, 238);
+}
+
+.row .col-lg-4 img {
+    display: block;
+    margin: 0 auto;
+}

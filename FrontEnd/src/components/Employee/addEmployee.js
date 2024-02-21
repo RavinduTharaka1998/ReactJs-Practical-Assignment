@@ -65,14 +65,21 @@ export default  class addEmployee extends  Component{
         this.setState( {
             dob: e.target.value
         });
-    this.onChangetAge(e)   
+    this.onChangetAge( e.target.value)   
     }
 
     onChangetAge(e){
+        //alert("Your age is calculating :"+e);
         const today = moment();
-        const birthdateMoment = moment(this.state.dob, 'YYYY-MM-DD');
-        this.state.age = today.diff(birthdateMoment, 'years');
-        //alert("Your age is:" +this.state.age);
+        const birthdateMoment = moment(e, 'YYYY-MM-DD');
+        if(today.diff(birthdateMoment, 'years') >= 18) {
+            this.state.age = today.diff(birthdateMoment, 'years');
+            //alert("Your age is:" +this.state.age);
+        }
+        else{
+            alert("Invalid Date of Birth");
+        }
+        
     }
 
     onChangeSalary(e){
@@ -163,7 +170,7 @@ export default  class addEmployee extends  Component{
                             </div>
                             <div class="form-group">
                                 <label>Salary (LKR)</label>
-                                <input type="number" required class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/>
+                                <input type="number" required min = {10000} class="form-control" value={this.state.salary} onChange = {this.onChangeSalary}/>
                             </div>
                             <div class="form-group">
                                 <label>Department</label>

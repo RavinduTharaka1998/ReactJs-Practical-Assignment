@@ -15,6 +15,7 @@ export default  class editDepartment extends  Component{
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            id:'',
             departmentName: ''
         }
 
@@ -42,7 +43,9 @@ export default  class editDepartment extends  Component{
     onSubmit(e){
         e.preventDefault();
         let y = parseInt(this.props.match.params.id);
+        this.state.id = y;
         const obj = {
+            id : this.state.id,
             departmentName : this.state.departmentName
         };
 

@@ -21,6 +21,7 @@ export default  class editEmployee extends  Component{
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            id:'',
             firstName: '',
             lastName: '',
             email:'',
@@ -81,10 +82,18 @@ export default  class editEmployee extends  Component{
         });
     this.onChangetAge(e)   
     }
+
     onChangetAge(e){
+         //alert("Your age is calculating :"+e);
         const today = moment();
-        const birthdateMoment = moment(this.state.dob, 'YYYY-MM-DD');
-        this.state.age = today.diff(birthdateMoment, 'years');
+        const birthdateMoment = moment(e, 'YYYY-MM-DD');
+        if(today.diff(birthdateMoment, 'years') >= 18) {
+            this.state.age = today.diff(birthdateMoment, 'years');
+            //alert("Your age is:" +this.state.age);
+        }
+        else{
+            alert("Invalid Date of Birth");
+        }
     }
     onChangeSalary(e){
         this.setState( {
@@ -99,9 +108,11 @@ export default  class editEmployee extends  Component{
 
     onSubmit(e){
         e.preventDefault();
-
+      
         let y = parseInt(this.props.match.params.id);
+        this.state.id = y;
         const obj = {
+            id : this.state.id,
             firstName : this.state.firstName,
             lastName : this.state.lastName,
             email : this.state.email,

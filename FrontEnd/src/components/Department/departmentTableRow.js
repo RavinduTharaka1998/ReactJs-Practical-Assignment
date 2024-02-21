@@ -14,6 +14,7 @@ export default class TableRow extends Component {
         axios.delete('https://localhost:7149/api/Department/'+x)
             .then(this.setState({redirect: true}))
             .catch(err => console.log(err))
+        
         window.location.replace('/viewDepartment');
     }
     render() {
